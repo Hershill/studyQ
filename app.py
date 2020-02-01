@@ -52,5 +52,16 @@ def studyq_get_quiz():
     return 'It works!'
 
 
+@app.route('/studyQ/mattest')
+def test_endpoint():
+    """
+    Map quiz objects to account and return quizzes
+
+    :return:
+    """
+    quiz = get_sample_quiz()
+    return jsonify({quiz})
+
+
 if __name__ == '__main__':
     app.run(host='localhost', port=int(os.environ.get('PORT', 8080)))
