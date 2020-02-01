@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify, make_response
 import os
 import logging
+import datetime
 from service import *
+from datastore import *
 
 app = Flask(__name__)
 
@@ -50,7 +52,7 @@ def studyq_get_quiz():
     """
     # Get data from server (for web ui)
     if request.method == 'GET':
-        user_id = request.args.get("userId")
+        user_id = request.args.get("userID")
         username = request.args.get("username")
         print(user_id)
         # all quiz ids of the user
@@ -63,7 +65,7 @@ def studyq_get_quiz():
     # Send data to server
     if request.method == 'POST':
         data = request.json
-        user_id = data["userId"]
+        user_id = data["userID"]
         username = data["username"]
         # all quiz ids of the user
         quiz_ids = get_quizz_ids(user_id)
@@ -82,6 +84,18 @@ def test_endpoint():
     """
     quiz = get_sample_quiz()
     return jsonify(quiz)
+
+
+@app.route('/datastore')
+def root():
+    # Store the current access time in Datastore.
+    store_time(datetime.datetime.now())
+
+    # Fetch the most recent 10 access times from Datastore.
+    times = fetch_times(10)
+    print(str(times))
+
+    return str(times)
 
 
 if __name__ == '__main__':
