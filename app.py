@@ -49,7 +49,7 @@ def studyq_get_quiz():
     :return:
     """
     if request.method == 'GET':
-        return make_response(jsonify("Hello"), 200)
+        return make_response(jsonify({"sample": "json"}), 200)
     return 'It works!'
 
 
