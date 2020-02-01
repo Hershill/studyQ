@@ -1,6 +1,7 @@
 {
   "quiz": [
     {
+      "id": "id1",
       "question": "The measure of location which is the most likely to be influenced by extreme values in the data set is the",
       "answers": [
         {
@@ -22,6 +23,7 @@
       ]
     },
     {
+      "id": "id2",
       "question": "If two events are independent, then",
       "answers": [
         {
@@ -38,6 +40,28 @@
         },
         {
           "A": "None of these alternatives is correct",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "id3",
+      "question": "ABC",
+      "answers": [
+        {
+          "A": "1",
+          "isCorrect": false
+        },
+        {
+          "B": "2",
+          "isCorrect": true
+        },
+        {
+          "A": "3",
+          "isCorrect": false
+        },
+        {
+          "A": "4",
           "isCorrect": false
         }
       ]

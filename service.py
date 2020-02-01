@@ -1,3 +1,6 @@
+import json
+
+
 def get_sample_quiz():
     quiz = {
         "id": "2b811da9-57f1-43db-8d67-9f9dc1c7958a",
@@ -28,3 +31,27 @@ def get_sample_quiz():
     }
 
     return quiz
+
+
+def get_quizz_ids(user_id):
+    user_quizzes = []
+    with open("userData.json", 'r') as f:
+        user_data = json.load(f)
+    
+    if user_id in user_data["userIDs"]:
+        for quiz in user_data["userIDs"][user_id]["quizIDs"]:
+            user_quizzes.append(quiz)
+    
+    return user_quizzes
+
+def display_quizzes(quiz_ids):
+    quizzes = []
+    with open("sampleData.json", 'r') as f:
+        quiz_data = json.load(f)
+    
+    for quiz_id in quiz_ids:
+        for quiz in quiz_data["quiz"]:
+            if quiz_id == quiz["id"]:
+                quizzes.append(quiz)
+    return quizzes
+

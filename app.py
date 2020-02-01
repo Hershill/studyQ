@@ -49,13 +49,19 @@ def studyq_get_quiz():
     :return:
     """
     data = request.json
+    user_id = data["userId"]
+    username = data["username"]
     # Get data from server
     if request.method == 'GET':
         return make_response(jsonify({"sample": "json"}), 200)
 
     # Send data to server
     if request.method == 'POST':
-        return jsonify(data)
+        # all quiz ids of the user
+        quiz_ids = get_quizz_ids(user_id)
+        # return quiz data for quiz ids
+        quiz_data = display_quizzes(quiz_ids)
+        return jsonify(quiz_data)
     return 'It works!'
 
 
@@ -72,4 +78,3 @@ def test_endpoint():
 
 if __name__ == '__main__':
     app.run(host='localhost', port=int(os.environ.get('PORT', 8080)))
-    debug = True
