@@ -25,21 +25,8 @@ def studyQ():
     return 'studyQ!'
 
 
-@app.route('/studyQ/get_quizzes')
-def studyq_get_quizzes():
-    """
-    Returns quizzes objects associated with account id
-
-    :return:
-    """
-
-    # Get account ID
-
-    return 'It works!'
-
-
-@app.route('/studyQ/get_quiz', methods=['GET', 'POST'])
-def studyq_get_quiz():
+@app.route('/studyQ/datastore_fetch_quizzes', methods=['GET', 'POST'])
+def datastore_fetch_quizzes():
     """
     Map quiz objects to account and return quizzes
 
@@ -47,25 +34,22 @@ def studyq_get_quiz():
     """
     # Get data from server (for web ui)
     if request.method == 'GET':
-        user_id = request.args.get("userID")
         username = request.args.get("username")
-        print(user_id)
         # all quiz ids of the user
-        quiz_ids = get_quizz_ids(user_id)
+        quiz_ids = get_quiz_ids_ds(username)
         # return quiz data for quiz ids
-        quiz_data = display_quizzes(quiz_ids)
+        quiz_data = display_quizzes_ds(quiz_ids)
         return make_response(jsonify(quiz_data), 200)
         # return make_response(jsonify({"sample": "json"}), 200)
 
     # Send data to server
     if request.method == 'POST':
         data = request.json
-        user_id = data["userID"]
         username = data["username"]
         # all quiz ids of the user
-        quiz_ids = get_quizz_ids(user_id)
+        quiz_ids = get_quiz_ids_ds(username)
         # return quiz data for quiz ids
-        quiz_data = display_quizzes(quiz_ids)
+        quiz_data = display_quizzes_ds(quiz_ids)
         return jsonify(quiz_data)
     
     return 'It works!'
@@ -82,27 +66,15 @@ def test_endpoint():
     return jsonify(quiz)
 
 
-@app.route('/studyQ/datastore_fetch')
-def datastore_fetch():
-    """
-    Map quiz objects to account and return quizzes
-
-    :return:
-    """
-    sample = fetch_json("quizData", "2b811da9-57f1-43db-8d67-9f9dc1c7958a")
-    # print(list(sample))
-    return jsonify(list(sample)[0])
-
-
 @app.route('/datastore')
 def root():
     # store_json("quizData")
     # store_json("userData")
 
-    sample = fetch_json("quizData")
-    # sample = fetch_json("userData")
+    # sample = fetch_json("quizData")
+    sample = fetch_json("userData")
 
-    return jsonify(list(sample))
+    return jsonify(list(sample)[0])
 
 
 if __name__ == '__main__':

@@ -9,17 +9,17 @@ def store_json(key):
     # with open("sampleData.json", 'r') as f:
     #     sample_data = json.load(f)
     
-    # with open("userData.json", 'r') as f:
-    #     user_data = json.load(f)
+    with open("user2.json", 'r') as f:
+        data = json.load(f)
 
     entity.update(data)    
     datastore_client.put(entity)
 
 
-def fetch_json(key, id=None):
+def fetch_json(key, filter=None):
     query = datastore_client.query(kind=key)
-    query.add_filter("id", "=", id)
+    if filter:
+        query.add_filter(filter['type'], "=", filter['key'])
     # query.order = ['-timestamp']
     sample = query.fetch()
-
-    return sample
+    return list(sample)[0]
