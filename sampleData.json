@@ -8,10 +8,10 @@
           "id": "q1",
           "question": "The measure of location which is the most likely to be influenced by extreme values in the data set is the",
           "answers": [
-            {"A": "range", "isCorrect": true},
-            {"B": "median", "isCorrect": false},
-            {"C": "mode", "isCorrect": false},
-            {"D": "mean", "isCorrect": false}
+            {"answer": "range", "isCorrect": true},
+            {"answer": "median", "isCorrect": false},
+            {"answer": "mode", "isCorrect": false},
+            {"answer": "mean", "isCorrect": false}
           ]
         }
       ]
@@ -24,10 +24,10 @@
           "id": "q2",
           "question": "If two events are independent, then",
           "answers": [
-            {"A": "they must be mutually exclusive", "isCorrect": false},
-            {"B": "the sum of their probabilities must be equal to one", "isCorrect": true},
-            {"C": "their intersection must be zero", "isCorrect": false},
-            {"D": "None of these alternatives is correct", "isCorrect": false}
+            {"answer": "they must be mutually exclusive", "isCorrect": false},
+            {"answer": "the sum of their probabilities must be equal to one", "isCorrect": true},
+            {"answer": "their intersection must be zero", "isCorrect": false},
+            {"answer": "None of these alternatives is correct", "isCorrect": false}
           ]
         }
       ]
@@ -40,10 +40,10 @@
           "id": "q3",
           "question": "ABC",
           "answers": [
-            {"A": "1", "isCorrect": false},
-            {"B": "2", "isCorrect": true},
-            {"C": "3", "isCorrect": false},
-            {"D": "4", "isCorrect": false}
+            {"answer": "1", "isCorrect": false},
+            {"answer": "2", "isCorrect": true},
+            {"answer": "3", "isCorrect": false},
+            {"answer": "4", "isCorrect": false}
           ]
         }
       ]
