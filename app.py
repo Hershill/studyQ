@@ -25,7 +25,7 @@ def studyq_get_quizzes():
     return 'It works!'
 
 
-@app.route('/studyQ/get_quizz')
+@app.route('/studyQ/get_quiz')
 def studyq_get_quizzes():
     """
     Map quiz objects to account and return quizzes
