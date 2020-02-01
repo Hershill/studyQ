@@ -48,8 +48,14 @@ def studyq_get_quiz():
 
     :return:
     """
+    data = request.json
+    # Get data from server
     if request.method == 'GET':
         return make_response(jsonify({"sample": "json"}), 200)
+
+    # Send data to server
+    if request.method == 'POST':
+        return jsonify(data)
     return 'It works!'
 
 
