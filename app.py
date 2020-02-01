@@ -10,7 +10,7 @@ def studyQ():
 
 
 @app.route('/studyQ')
-def studyQ():
+def studyQnew():
     return 'It works!'
 
 
