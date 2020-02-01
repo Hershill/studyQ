@@ -2,11 +2,11 @@
     "userIDs": {
         "1": {
             "name": "fizz bizz",
-            "quizIDs": ["id1", "id2"]
+            "quizIDs": ["quiz1", "quiz2"]
         },
         "2": {
             "name": "xyz",
-            "quizIDs": ["id2", "id3"]
+            "quizIDs": ["quiz2", "quiz3"]
         }
     }
 }

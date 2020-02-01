@@ -48,8 +48,7 @@ def studyq_get_quiz():
 
     :return:
     """
-    
-    # Get data from server
+    # Get data from server (for web ui)
     if request.method == 'GET':
         user_id = request.args.get("userId")
         username = request.args.get("username")

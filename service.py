@@ -49,9 +49,13 @@ def display_quizzes(quiz_ids):
     with open("sampleData.json", 'r') as f:
         quiz_data = json.load(f)
     
-    for quiz_id in quiz_ids:
-        for quiz in quiz_data["quiz"]:
-            if quiz_id == quiz["id"]:
-                quizzes.append(quiz)
+    for quiz in quiz_data["quizzes"]:
+        if quiz["id"] in quiz_ids:
+            quizzes.append(quiz)
+
+    # for quiz_id in quiz_ids:
+    #     for quiz in quiz_data["quiz"]:
+    #         if quiz_id == quiz["id"]:
+    #             quizzes.append(quiz)
     return quizzes
 

@@ -1,71 +1,52 @@
 {
-  "quiz": [
+  "quizzes": [
     {
-      "id": "id1",
-      "question": "The measure of location which is the most likely to be influenced by extreme values in the data set is the",
-      "answers": [
+      "id": "quiz1",
+      "name": "quiz 1",
+      "questions": [
         {
-          "A": "range",
-          "isCorrect": true
-        },
-        {
-          "B": "median",
-          "isCorrect": false
-        },
-        {
-          "A": "mode",
-          "isCorrect": false
-        },
-        {
-          "A": "mean",
-          "isCorrect": false
+          "id": "q1",
+          "question": "The measure of location which is the most likely to be influenced by extreme values in the data set is the",
+          "answers": [
+            {"A": "range", "isCorrect": true},
+            {"B": "median", "isCorrect": false},
+            {"C": "mode", "isCorrect": false},
+            {"D": "mean", "isCorrect": false}
+          ]
         }
       ]
     },
     {
-      "id": "id2",
-      "question": "If two events are independent, then",
-      "answers": [
+      "id": "quiz2",
+      "name": "quiz 2",
+      "questions": [
         {
-          "A": "they must be mutually exclusive",
-          "isCorrect": false
-        },
-        {
-          "B": "the sum of their probabilities must be equal to one",
-          "isCorrect": true
-        },
-        {
-          "A": "their intersection must be zero",
-          "isCorrect": false
-        },
-        {
-          "A": "None of these alternatives is correct",
-          "isCorrect": false
+          "id": "q2",
+          "question": "If two events are independent, then",
+          "answers": [
+            {"A": "they must be mutually exclusive", "isCorrect": false},
+            {"B": "the sum of their probabilities must be equal to one", "isCorrect": true},
+            {"C": "their intersection must be zero", "isCorrect": false},
+            {"D": "None of these alternatives is correct", "isCorrect": false}
+          ]
         }
       ]
     },
     {
-      "id": "id3",
-      "question": "ABC",
-      "answers": [
+      "id": "quiz3",
+      "name": "quiz 3",
+      "questions": [
         {
-          "A": "1",
-          "isCorrect": false
-        },
-        {
-          "B": "2",
-          "isCorrect": true
-        },
-        {
-          "A": "3",
-          "isCorrect": false
-        },
-        {
-          "A": "4",
-          "isCorrect": false
+          "id": "q3",
+          "question": "ABC",
+          "answers": [
+            {"A": "1", "isCorrect": false},
+            {"B": "2", "isCorrect": true},
+            {"C": "3", "isCorrect": false},
+            {"D": "4", "isCorrect": false}
+          ]
         }
       ]
     }
   ]
-
 }
