@@ -2,7 +2,7 @@ import os
 import logging
 
 # Using FLASK_ENV to get the current environment and adjust the configuration.
-app_env = os.environ.get('FLASK_ENV')
+app_env = os.environ.get('FLASK_ENV', 'development')
 
 # If FLASK_ENV is not set, flask defaults to production, we want to set to development as default so during local
 if app_env is None:
