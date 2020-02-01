@@ -91,7 +91,7 @@ def datastore_fetch():
     """
     sample = fetch_json("quizData", "2b811da9-57f1-43db-8d67-9f9dc1c7958a")
     # print(list(sample))
-    return jsonify(list(sample))
+    return jsonify(list(sample)[0])
 
 
 @app.route('/datastore')
