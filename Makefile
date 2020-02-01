@@ -8,8 +8,9 @@ run:
 	python -m flask run
 
 deploy-prod:
+	gcloud config set run/region us-east1
 	gcloud builds submit --tag gcr.io/studyq-266906/studyq-backend
-	gcloud run deploy --image gcr.io/studyq-266906/studyq-backend --platform managed
+	gcloud run deploy studyq-backend --image gcr.io/studyq-266906/studyq-backend --platform managed
 
 # Don't use
 browser:
