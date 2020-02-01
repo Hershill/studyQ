@@ -25,11 +25,6 @@ def studyQ():
     return 'studyQ!'
 
 
-@app.route('/studyQ/quizzes')
-def studyQnew():
-    return 'It works!'
-
-
 @app.route('/studyQ/get_quizzes')
 def studyq_get_quizzes():
     """
@@ -72,6 +67,7 @@ def studyq_get_quiz():
         # return quiz data for quiz ids
         quiz_data = display_quizzes(quiz_ids)
         return jsonify(quiz_data)
+    
     return 'It works!'
 
 
@@ -86,16 +82,27 @@ def test_endpoint():
     return jsonify(quiz)
 
 
+@app.route('/studyQ/datastore_fetch')
+def datastore_fetch():
+    """
+    Map quiz objects to account and return quizzes
+
+    :return:
+    """
+    sample = fetch_json("quizData", "2b811da9-57f1-43db-8d67-9f9dc1c7958a")
+    # print(list(sample))
+    return jsonify(list(sample))
+
+
 @app.route('/datastore')
 def root():
-    # Store the current access time in Datastore.
-    store_time(datetime.datetime.now())
+    # store_json("quizData")
+    # store_json("userData")
 
-    # Fetch the most recent 10 access times from Datastore.
-    times = fetch_times(10)
-    print(str(times))
+    sample = fetch_json("quizData")
+    # sample = fetch_json("userData")
 
-    return str(times)
+    return jsonify(list(sample))
 
 
 if __name__ == '__main__':
