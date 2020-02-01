@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, jsonify
 import os
+from service import get_sample_quiz
 
 app = Flask(__name__)
 
@@ -33,6 +34,17 @@ def studyq_get_quiz():
     :return:
     """
     return 'It works!'
+
+
+@app.route('/studyQ/mattest')
+def test_endpoint():
+    """
+    Map quiz objects to account and return quizzes
+
+    :return:
+    """
+    quiz = get_sample_quiz()
+    return jsonify({quiz})
 
 
 if __name__ == '__main__':
