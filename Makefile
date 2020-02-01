@@ -7,11 +7,11 @@ install:
 run:
 	python -m flask run
 
-# Don't use
 deploy-prod:
-	gcloud config set project home-prod
-	gcloud app deploy app-prod.yaml
+	gcloud builds submit --tag gcr.io/studyq-266906/studyq-backend
+	gcloud run deploy --image gcr.io/studyq-266906/studyq-backend --platform managed
 
+# Don't use
 browser:
 	gcloud app browse -s romdash-backend
 
