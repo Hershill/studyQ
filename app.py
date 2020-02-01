@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 import os
 import logging
+from service import *
 
 app = Flask(__name__)
 
@@ -60,7 +61,7 @@ def test_endpoint():
     :return:
     """
     quiz = get_sample_quiz()
-    return jsonify({quiz})
+    return jsonify(quiz)
 
 
 if __name__ == '__main__':
