@@ -1,0 +1,47 @@
+{
+  "quiz": [
+    {
+      "question": "The measure of location which is the most likely to be influenced by extreme values in the data set is the",
+      "answers": [
+        {
+          "A": "range",
+          "isCorrect": true
+        },
+        {
+          "B": "median",
+          "isCorrect": false
+        },
+        {
+          "A": "mode",
+          "isCorrect": false
+        },
+        {
+          "A": "mean",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "If two events are independent, then",
+      "answers": [
+        {
+          "A": "they must be mutually exclusive",
+          "isCorrect": false
+        },
+        {
+          "B": "the sum of their probabilities must be equal to one",
+          "isCorrect": true
+        },
+        {
+          "A": "their intersection must be zero",
+          "isCorrect": false
+        },
+        {
+          "A": "None of these alternatives is correct",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+
+}
