@@ -48,15 +48,24 @@ def studyq_get_quiz():
 
     :return:
     """
-    data = request.json
-    user_id = data["userId"]
-    username = data["username"]
+    
     # Get data from server
     if request.method == 'GET':
-        return make_response(jsonify({"sample": "json"}), 200)
+        user_id = request.args.get("userId")
+        username = request.args.get("username")
+        print(user_id)
+        # all quiz ids of the user
+        quiz_ids = get_quizz_ids(user_id)
+        # return quiz data for quiz ids
+        quiz_data = display_quizzes(quiz_ids)
+        return make_response(jsonify(quiz_data), 200)
+        # return make_response(jsonify({"sample": "json"}), 200)
 
     # Send data to server
     if request.method == 'POST':
+        data = request.json
+        user_id = data["userId"]
+        username = data["username"]
         # all quiz ids of the user
         quiz_ids = get_quizz_ids(user_id)
         # return quiz data for quiz ids
