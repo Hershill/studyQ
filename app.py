@@ -9,10 +9,10 @@ def studyQ():
     return 'studyQ!'
 
 
-@app.route('/studyQ')
+@app.route('/studyQ/quizzes')
 def studyQnew():
     return 'It works!'
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(host='localhost', port=int(os.environ.get('PORT', 8080)))
