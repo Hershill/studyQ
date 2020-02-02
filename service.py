@@ -1,5 +1,5 @@
 import json
-from datastore import *
+from datastore import store_json, fetch_json
 
 def get_sample_quiz():
     quiz = {
@@ -47,4 +47,8 @@ def display_quizzes_ds(quiz_ids):
         quiz_data = fetch_json('quizData', filter={"type": "id", "key": quiz})
         quizzes.append(quiz_data)
     return quizzes
-    
+
+
+def get_user(username):
+    user_data = fetch_json('userData', filter={"type": "username", "key": username})
+    return user_data

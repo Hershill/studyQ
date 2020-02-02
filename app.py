@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify, make_response
 import os
 import logging
 import datetime
-from service import *
-from datastore import *
+from service import get_quiz_ids_ds, display_quizzes_ds, get_sample_quiz, get_user
+from datastore import store_json, fetch_json
 
 app = Flask(__name__)
 
@@ -77,9 +77,28 @@ def root():
     return jsonify(list(sample)[0])
 
 
-@app.route('/studyQ/account')
+@app.route('/studyQ/account', methods=['GET', 'POST'])
 def create_account():
-    return jsonify("account")
+    # Send data to server
+    if request.method == 'POST':
+        username = request.form.get("username")
+        # data = request.json
+        # username = data["username"]
+        # all quiz ids of the user
+        user_data = get_user(username)
+        if not user_data:
+            user_data = {"username": username, "quizIDs": []}
+            store_json(user_data, "userData")
+    
+    # Send data to server
+    if request.method == 'GET':
+        username = request.args.get("username")
+        # all quiz ids of the user
+        user_data = get_user(username)
+        if not user_data:
+            user_data = {"username": username, "quizIDs": []}
+            store_json(user_data, "userData")
+    return make_response(jsonify(user_data), 200)
 
 
 if __name__ == '__main__':
