@@ -50,7 +50,8 @@ jobs:
     # Build the Docker image
     - name: Build
       run: |
-        gcloud auth application-default login --no-launch-browser --quiet
+        echo $GOOGLE_APPLICATION_CREDENTIALS > key.json
+        gcloud auth activate-service-account --key-file=key.json
         gcloud builds submit --tag gcr.io/$GCP_PROJECT/studyq-backend
 
     # Push the Docker image to Google Container Registry
