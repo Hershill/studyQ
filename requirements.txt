@@ -1,2 +1,4 @@
 flask
 google-cloud-datastore==1.10.0
+google-cloud-vision==0.41.0
+google-cloud-storage==1.19.1
