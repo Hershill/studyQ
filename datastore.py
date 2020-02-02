@@ -24,3 +24,11 @@ def fetch_json(key, filter=None):
     if sample:
         return sample[0]
     return sample
+
+
+def delete(key, filter):
+    query = datastore_client.query(kind=key)
+    if filter:
+        query.add_filter(filter['type'], "=", filter['key'])
+    entity = query.fetch()
+    datastore_client.delete(entity)

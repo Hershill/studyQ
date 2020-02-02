@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, make_response
 import os
 import logging
 import datetime
+import json
 from service import get_quiz_ids_ds, display_quizzes_ds, get_sample_quiz, get_user, parse_more, add_quiz
 from google.cloud import vision
 from datastore import store_json, fetch_json
@@ -78,11 +79,14 @@ def root():
     return jsonify(list(sample)[0])
 
 
-@app.route('/studyQ/quiz', methods=['POST'])
+@app.route('/studyQ/quiz', methods=['GET', 'POST'])
 def create_quiz():
     username = request.values.get("username")
     quiz = request.values.get("quiz")
-    add_quiz(username, quiz)
+    print(json.loads(quiz))
+    quiz_json = json.loads(quiz)
+    add_quiz(username, quiz_json)
+    return make_response(jsonify("sent"), 204)
 
 
 @app.route('/studyQ/account', methods=['GET', 'POST'])

@@ -1,7 +1,7 @@
 import json
 import uuid
 import logging
-from datastore import store_json, fetch_json
+from datastore import store_json, fetch_json, delete
 
 
 def get_sample_quiz():
@@ -56,10 +56,16 @@ def display_quizzes_ds(quiz_ids):
 def add_quiz(username, quiz):
     # Add quiz to user data
     user_data = fetch_json('userData', filter={"type": "username", "key": username})
-    logging.info("quiz: {}".format(quiz))
-    logging.info("quiz id: {}".format(quiz["id"]))
-    logging.info("user: {}".format(user_data))
+    print(quiz)
+    print(quiz["id"])
+    print(user_data)
+    # logging.info("quiz: {}".format(quiz))
+    # logging.info("quiz id: {}".format(quiz["id"]))
+    # logging.info("user: {}".format(user_data))
     user_data["quizIDs"].append(quiz["id"])
+    
+    # delete('userData', filter={"type": "username", "key": username})
+
     store_json(user_data, "userData")
 
     # Store the new quiz
