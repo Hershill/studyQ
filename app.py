@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, make_response
 import os
 import logging
 import datetime
+from google.cloud import vision
 from service import *
 from datastore import *
 
@@ -18,6 +19,7 @@ logger.setLevel(logging.DEBUG)
 
 # Load the configuration from the config file
 app.config.from_pyfile('config.py')
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="studyq-266906-88a65ce1b08d.json"
 
 
 @app.route('/')
@@ -75,6 +77,43 @@ def root():
     sample = fetch_json("userData")
 
     return jsonify(list(sample)[0])
+
+
+@app.route('/studyQ/account')
+def create_account():
+    return jsonify("account")
+
+
+@app.route('/studyQ/vision-api-demo', methods=['GET', 'POST'])
+def detect_text_uri():
+    """Detects text in the file located in Google Cloud Storage or on the Web.
+    """
+    uri = request.args.get("image-gcs")
+    client = vision.ImageAnnotatorClient()
+    image = vision.types.Image()
+    image.source.image_uri = uri
+
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+    print('Texts:')
+    ocr = ""
+
+    for text in texts:
+        print('\n"{}"'.format(text.description))
+        ocr += '\n"{}"'.format(text.description)
+        
+        vertices = (['({},{})'.format(vertex.x, vertex.y)
+                    for vertex in text.bounding_poly.vertices])
+
+        print('bounds: {}'.format(','.join(vertices)))
+
+    if response.error.message:
+        raise Exception(
+            '{}\nFor more info on error messages, check: '
+            'https://cloud.google.com/apis/design/errors'.format(
+                response.error.message))
+    
+    return jsonify(ocr)
 
 
 if __name__ == '__main__':
