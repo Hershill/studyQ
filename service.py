@@ -1,4 +1,5 @@
 import json
+import uuid
 from datastore import store_json, fetch_json
 
 def get_sample_quiz():
@@ -52,3 +53,44 @@ def display_quizzes_ds(quiz_ids):
 def get_user(username):
     user_data = fetch_json('userData', filter={"type": "username", "key": username})
     return user_data
+
+
+def merge_q_a(question_data, answer_data):
+    final_set = []
+
+    for q in question_data:
+        print(q)
+        q.update({"answers": answer_data[0:4]})
+        q.update({"leaderboard": []})
+        q.update({"uuid": uuid.uuid4()})
+        answer_data = answer_data[4:]
+        final_set.append(q)
+    
+    final_set = {"questions": final_set, "name": "Edit Title", "uuid": uuid.uuid4()}
+    return final_set
+
+
+def parse_more(data):
+    print(data)
+    question_data = []
+    answer_data = []
+    for q in data:
+        question = " ".join(q['question'])
+        question_data.append({"question": question})
+    
+    for a in data:
+        answer_data.append({"answer": a['a'][5:], "isCorrect": False})
+        answer_data.append({"answer": a['b'][5:], "isCorrect": False})
+        answer_data.append({"answer": a['c'][5:], "isCorrect": False})
+        answer_data.append({"answer": a['d'][5:], "isCorrect": False})
+    
+    answer_data.append({"answer": data[-1]['a'][5:]})
+    answer_data.append({"answer": data[-1]['b'][5:]})
+    answer_data.append({"answer": data[-1]['c'][5:]})
+    answer_data.append({"answer": data[-1]['d'][5:]})
+
+    answer_data = answer_data[4:]
+    
+    print(answer_data)
+    quiz_data = merge_q_a(question_data, answer_data)
+    return quiz_data
