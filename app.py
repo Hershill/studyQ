@@ -98,6 +98,7 @@ def create_account():
         if not user_data:
             user_data = {"username": username, "quizIDs": []}
             store_json(user_data, "userData")
+    
     return make_response(jsonify(user_data), 200)
 
 
