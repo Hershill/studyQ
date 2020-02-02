@@ -64,7 +64,7 @@ def add_quiz(username, quiz):
     # logging.info("user: {}".format(user_data))
     user_data["quizIDs"].append(quiz["id"])
     
-    # delete('userData', filter={"type": "username", "key": username})
+    delete('userData', filter={"type": "username", "key": username})
 
     store_json(user_data, "userData")
 

@@ -19,7 +19,7 @@ def fetch_json(key, filter=None):
     query = datastore_client.query(kind=key)
     if filter:
         query.add_filter(filter['type'], "=", filter['key'])
-    # query.order = ['-timestamp']
+    query.order = ['-timestamp']
     sample = list(query.fetch())
     if sample:
         return sample[0]
@@ -31,4 +31,10 @@ def delete(key, filter):
     if filter:
         query.add_filter(filter['type'], "=", filter['key'])
     entity = query.fetch()
-    datastore_client.delete(entity)
+    # print(entity)
+    # entity.update({
+        # 'username': 'none'
+    # })
+    # batch = datastore_client.batch()
+    # batch.begin()
+    # batch.delete(entity['username'])
