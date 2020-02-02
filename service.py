@@ -1,5 +1,6 @@
 import json
 import uuid
+import logging
 from datastore import store_json, fetch_json
 
 
@@ -55,8 +56,9 @@ def display_quizzes_ds(quiz_ids):
 def add_quiz(username, quiz):
     # Add quiz to user data
     user_data = fetch_json('userData', filter={"type": "username", "key": username})
-    print(quiz)
-    user_data["quizIDs"].append(quiz["id"])
+    logging.info("quiz: {}".format(quiz))
+    logging.info("user: {}".format(quiz))
+    user_data["quizIDs"].append(quiz)
     store_json(user_data, "userData")
 
     # Store the new quiz
