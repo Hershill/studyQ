@@ -80,8 +80,8 @@ def root():
 
 @app.route('/studyQ/quiz', methods=['GET'])
 def create_quiz():
-    username = request.args.get("username")
-    quiz = request.args.get("quiz")
+    username = request.values.get("username")
+    quiz = request.values.get("quiz")
     add_quiz(username, quiz)
 
 
