@@ -77,5 +77,10 @@ def root():
     return jsonify(list(sample)[0])
 
 
+@app.route('/studyQ/account')
+def create_account():
+    return jsonify("account")
+
+
 if __name__ == '__main__':
     app.run(host='localhost', port=int(os.environ.get('PORT', 8080)))
