@@ -55,10 +55,11 @@ def display_quizzes_ds(quiz_ids):
 def add_quiz(username, quiz):
     # Add quiz to user data
     user_data = fetch_json('userData', filter={"type": "username", "key": username})
+    print(quiz)
     user_data["quizIDs"].append(quiz["id"])
+    store_json(user_data, "userData")
 
     # Store the new quiz
-    store_json(user_data, "userData")
     store_json(quiz, "quizData")
 
 
