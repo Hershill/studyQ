@@ -78,10 +78,10 @@ def root():
     return jsonify(list(sample)[0])
 
 
-@app.route('/studyQ/quiz', methods=['POST'])
+@app.route('/studyQ/quiz', methods=['GET'])
 def create_quiz():
-    username = request.form.get("username")
-    quiz = request.form.get("quiz")
+    username = request.args.get("username")
+    quiz = request.args.get("quiz")
     add_quiz(username, quiz)
 
 
@@ -134,8 +134,8 @@ def detect_text_uri():
     question = True
     first_question_bool = True
     first_abcd = True
-    ab_only_question=False
-    first_time=True
+    ab_only_question = False
+    first_time = True
     quizzletCard = []
     texts = texts[1:]
     for text in texts:
@@ -153,20 +153,19 @@ def detect_text_uri():
             question = True
             first_question = False
             if first_abcd:
-                first_abcd=False
+                first_abcd = False
                 print(len(a_answer))
 
             if ab_only_question:
-                a_string=""
+                a_string = ""
                 for elem in a_answer:
-                    a_string = a_string +" " + elem
+                    a_string = a_string + " " + elem
 
-                b_string=""
+                b_string = ""
                 for elem in b_answer:
-                    b_string = b_string +" " + elem
+                    b_string = b_string + " " + elem
 
-
-                dictionary={}
+                dictionary = {}
                 dictionary['question'] = current_question
                 dictionary['a'] = a_string
                 dictionary['b'] = b_string
@@ -176,29 +175,29 @@ def detect_text_uri():
                 a_answer = []
                 b_answer = []
 
-            else: # create dictionary with a,b,c,d
+            else:  # create dictionary with a,b,c,d
                 # convert d_answer into one string
-                d_string=""
+                d_string = ""
                 for elem in d_answer:
-                    d_string = d_string +" " + elem
+                    d_string = d_string + " " + elem
 
-                c_string=""
+                c_string = ""
                 for elem in c_answer:
-                    c_string = c_string +" " + elem
+                    c_string = c_string + " " + elem
 
-                b_string=""
+                b_string = ""
                 for elem in b_answer:
-                    b_string = b_string +" " + elem
+                    b_string = b_string + " " + elem
 
-                a_string=""
+                a_string = ""
                 for elem in a_answer:
-                    a_string = a_string +" " + elem
+                    a_string = a_string + " " + elem
 
-                q_string=""
+                q_string = ""
                 for elem in current_question:
-                    q_string = q_string +" " + elem
+                    q_string = q_string + " " + elem
 
-                dictionary={}
+                dictionary = {}
                 dictionary['question'] = current_question
                 dictionary['a'] = a_string
                 dictionary['b'] = b_string
@@ -210,7 +209,6 @@ def detect_text_uri():
                 c_answer = []
                 d_answer = []
 
-
         elif '(a)' in aWord:
             first_question = False
             question = False
@@ -218,10 +216,10 @@ def detect_text_uri():
             which_letter = 'a'
         elif '(b)' in aWord:
             which_letter = 'b'
-            ab_only_question=True
+            ab_only_question = True
         elif '(c)' in aWord:
             which_letter = 'c'
-            ab_only_question=False
+            ab_only_question = False
         elif '(d)' in aWord:
             which_letter = 'd'
 
@@ -253,13 +251,12 @@ def detect_text_uri():
 
         # print('bounds: {}'.format(','.join(vertices)))
 
-
     if response.error.message:
         raise Exception(
             '{}\nFor more info on error messages, check: '
             'https://cloud.google.com/apis/design/errors'.format(
                 response.error.message))
-    
+
     quizzletCard = parse_more(quizzletCard)
     # a works if you include the first (a), for a_answer[1:]
     return jsonify(quizzletCard)
