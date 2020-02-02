@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify, make_response
 import os
 import logging
 import datetime
+from service import get_quiz_ids_ds, display_quizzes_ds, get_sample_quiz, get_user, pasre_more, add_quiz
 from google.cloud import vision
-from service import get_quiz_ids_ds, display_quizzes_ds, get_sample_quiz, get_user, parse_more
 from datastore import store_json, fetch_json
 
 app = Flask(__name__)
@@ -52,7 +52,7 @@ def datastore_fetch_quizzes():
         # return quiz data for quiz ids
         quiz_data = display_quizzes_ds(quiz_ids)
         return jsonify(quiz_data)
-    
+
     return 'It works!'
 
 
@@ -78,6 +78,13 @@ def root():
     return jsonify(list(sample)[0])
 
 
+@app.route('/studyQ/quiz', methods=['POST'])
+def create_quiz():
+    username = request.form.get("username")
+    quiz = request.form.get("quiz")
+    add_quiz(username, quiz)
+
+
 @app.route('/studyQ/account', methods=['GET', 'POST'])
 def create_account():
     # Send data to server
@@ -90,7 +97,7 @@ def create_account():
         if not user_data:
             user_data = {"username": username, "quizIDs": []}
             store_json(user_data, "userData")
-    
+
     # Send data to server
     if request.method == 'GET':
         username = request.args.get("username")
@@ -99,7 +106,7 @@ def create_account():
         if not user_data:
             user_data = {"username": username, "quizIDs": []}
             store_json(user_data, "userData")
-    
+
     return make_response(jsonify(user_data), 200)
 
 

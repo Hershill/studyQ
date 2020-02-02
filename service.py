@@ -2,6 +2,7 @@ import json
 import uuid
 from datastore import store_json, fetch_json
 
+
 def get_sample_quiz():
     quiz = {
         "id": "2b811da9-57f1-43db-8d67-9f9dc1c7958a",
@@ -36,7 +37,8 @@ def get_sample_quiz():
 
 def get_quiz_ids_ds(username):
     user_quizzes = []
-    user_data = fetch_json('userData', filter={"type": "username", "key": username})
+    user_data = fetch_json('userData', filter={
+                           "type": "username", "key": username})
     for quiz in user_data["quizIDs"]:
         user_quizzes.append(quiz)
     return user_quizzes
@@ -50,8 +52,19 @@ def display_quizzes_ds(quiz_ids):
     return quizzes
 
 
+def add_quiz(username, quiz):
+    # Add quiz to user data
+    user_data = fetch_json('userData', filter={"type": "username", "key": username})[0]
+    user_data["quizIDs"].append(quiz["id"])
+
+    # Store the new quiz
+    store_json(user_data, "userData")
+    store_json(quiz, "quizData")
+
+
 def get_user(username):
-    user_data = fetch_json('userData', filter={"type": "username", "key": username})
+    user_data = fetch_json('userData', filter={
+                           "type": "username", "key": username})
     return user_data
 
 
