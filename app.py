@@ -78,7 +78,7 @@ def root():
     return jsonify(list(sample)[0])
 
 
-@app.route('/studyQ/quiz', methods=['GET'])
+@app.route('/studyQ/quiz', methods=['GET', 'POST'])
 def create_quiz():
     username = request.values.get("username")
     quiz = request.values.get("quiz")
