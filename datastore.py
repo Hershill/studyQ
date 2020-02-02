@@ -19,7 +19,7 @@ def fetch_json(key, filter=None):
     query = datastore_client.query(kind=key)
     if filter:
         query.add_filter(filter['type'], "=", filter['key'])
-    query.order = ['-timestamp']
+    # query.order = ['-timestamp']
     sample = list(query.fetch())
     if sample:
         return sample[0]
