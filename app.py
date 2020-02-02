@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, make_response
 import os
 import logging
 import datetime
-from service import get_quiz_ids_ds, display_quizzes_ds, get_sample_quiz, get_user, pasre_more, add_quiz
+from service import get_quiz_ids_ds, display_quizzes_ds, get_sample_quiz, get_user, parse_more, add_quiz
 from google.cloud import vision
 from datastore import store_json, fetch_json
 
