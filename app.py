@@ -79,11 +79,6 @@ def root():
     return jsonify(list(sample)[0])
 
 
-@app.route('/studyQ/account')
-def create_account():
-    return jsonify("account")
-
-
 @app.route('/studyQ/vision-api-demo', methods=['GET', 'POST'])
 def detect_text_uri():
     """Detects text in the file located in Google Cloud Storage or on the Web.
