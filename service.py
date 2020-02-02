@@ -57,8 +57,9 @@ def add_quiz(username, quiz):
     # Add quiz to user data
     user_data = fetch_json('userData', filter={"type": "username", "key": username})
     logging.info("quiz: {}".format(quiz))
-    logging.info("user: {}".format(quiz))
-    user_data["quizIDs"].append(quiz)
+    logging.info("quiz id: {}".format(quiz["id"]))
+    logging.info("user: {}".format(user_data))
+    user_data["quizIDs"].append(quiz["id"])
     store_json(user_data, "userData")
 
     # Store the new quiz
